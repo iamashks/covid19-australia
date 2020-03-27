@@ -4,6 +4,7 @@
 # Credits
 
 - COVID-19 Data is taken from [Johns Hopkins CSSE][301].
+- HTML template is inspired from [Notebooks on GitHub][302].
 
 ## License
 
@@ -18,3 +19,4 @@ This project is freely licensed under the [MIT License][101].
 [201]: https://ashks.com
 
 [301]: https://github.com/CSSEGISandData/COVID-19
+[302]: https://github.com/pratapvardhan/notebooks
