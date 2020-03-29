@@ -1,4 +1,4 @@
-# COVID-19 Status of Australia
+# COVID-19 Status in Australia
 ##### Quick and straightforward analysis of COVID-19's status in Australia.
 
 # Credits
