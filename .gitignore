@@ -145,3 +145,6 @@ static
 # IDE
 .idea
 *.iml
+
+# Others
+.local
