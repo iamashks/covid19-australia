@@ -5,19 +5,26 @@
     {'title': 'New South Wales', 'prefix': 'NSW'}, {'title': 'Victoria', 'prefix': 'VIC'},
     {'title': 'Queensland', 'prefix': 'QLD'}] %}
 {% set LEGEND_DOMAIN = LEGEND_DOMAIN or [10, 100, 1000, np.inf] %}
-{% set WIDTH_REGION, WIDTH_STRIP = 120, 140 %}
+{% set WIDTH_REGION, WIDTH_STRIP = 120, 120 %}
 {% set STRIP_WIDTH = (WIDTH_REGION // newcases.shape[1] + 1) %}
 {% set LEGEND_RANGE = ['#ffc100', '#ff9a00', '#ff7400', '#ff4d00'] %}
 {% set TOPLINKS = TOPLINKS or [
-    {'title': 'World', 'href': '../covid-overview/'}, {'title': 'Australia', 'href': '../covid-overview-australia/'},
-    {'title': 'Europe', 'href': '../covid-overview-europe/'}, {'title': 'US', 'href': '../covid-overview-us/'}] %}
+    {'title': 'World', 'href': '../covid-overview/'},
+    {'title': 'Europe', 'href': '../covid-overview-europe/'},
+    {'title': 'Australia', 'href': '../covid-overview-australia/'},
+    {'title': 'Chile', 'href': '../jupyter/2020/04/27/Covid-19-Overview-Chile.html'},
+    {'title': 'Morocco', 'href': '../covid-overview-morocco/'},
+    {'title': 'US', 'href': '../covid-overview-us/'}
+] %}
 {% set lastdays = (D['updated'] - D['since']).days %}
 
 {% macro kpi(name, number, growth, growcls='') -%}
+    {% set cls = 'pos' if growth < 0 else 'neg' %}
+
     <div class="kpi">
         <div class="kname">{{ name }}</div>
         <div class="num">{{ '{0:,.0f}'.format(number) }}</div>
-        <div class="grow {{ growcls }}">(<b>{{ '{0:+,.0f}'.format(growth) }}</b>)</div>
+        <div class="grow {{ cls }} {{ growcls }}">(<b>{{ '{0:+,.0f}'.format(growth) }}</b>)</div>
     </div>
 {%- endmacro %}
 
@@ -34,15 +41,15 @@
 {% macro toplinks() -%}
     <div class="text-center">
         {% for link in TOPLINKS %}
-            <a class="btn btn-primary" href="{{ link['href'] }}">{{ link['title'] }}</a>{% endfor %}
+            <a class="btn btn-primary" href="{{ link['href'] }}" target="_blank">{{ link['title'] }}</a>{% endfor %}
     </div>
 {%- endmacro %}
 
 {% macro plotstrip(arr) -%}
-    <div class="flex" style="height:15px;">
+    <div class="flex" style="height:16px;">
         {% set colors = np.digitize(arr, LEGEND_DOMAIN) %}
         {% for i, v in enumerate(arr) %}
-            <div style="width:{{ STRIP_WIDTH }}px;background:{{ LEGEND_RANGE[colors[i]] if (v) else '#eee' }};border-right:1px solid rgba(255,255,255,0.5);"></div>
+            <div style="width:{{ STRIP_WIDTH }}px;background:{{ LEGEND_RANGE[colors[i]] if (v) else '#eee' }};border-right:0px solid rgba(255,255,255,0.5);"></div>
         {% endfor %}
     </div>
 {%- endmacro %}
@@ -68,11 +75,12 @@
 
 <div class="keen container">
     {{ toplinks() }}
-    <div>
+    <div class="flex-container">
         <div class="kpi-head main text-center">{{ KPI_CASE }}</div>
         <div class="flex kpi-box main">
             {{ kpi(name='Confirmed', number=D['Cases'], growth=D['Cases (5D)']) }}
             {{ kpi(name='Recovered', number=D['Recover'], growth=D['Recover (5D)'], growcls='pos') }}
+            {{ kpi(name='Active', number=D['Active'], growth=D['Active (5D)']) }}
             {{ kpi(name='Deaths', number=D['Deaths'], growth=D['Deaths (5D)']) }}
         </div>
     </div>
@@ -84,6 +92,10 @@
             {% endfor %}
         </div>
     </div>
+
+    <p class="text-center" style="margin-top: 20px; margin-bottom: -10px;">
+        Updated on <b>{{ D['updated'].strftime('%B %d, %Y') }}</b> (+NEW shows change for last {{ lastdays }} days).
+    </p>
 
     <table class="table">
         <thead>
@@ -122,8 +134,4 @@
         {% endfor %}
         </tbody>
     </table>
-
-    <p class="text-center">
-        Updated on <b>{{ D['updated'].strftime('%B %d, %Y') }}</b> (+NEW shows change for last {{ lastdays }} days).
-    </p>
 </div>
