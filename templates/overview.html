@@ -7,7 +7,7 @@
 {% set LEGEND_DOMAIN = LEGEND_DOMAIN or [10, 100, 1000, np.inf] %}
 {% set WIDTH_REGION, WIDTH_STRIP = 120, 120 %}
 {% set STRIP_WIDTH = (WIDTH_REGION // newcases.shape[1] + 1) %}
-{% set LEGEND_RANGE = ['#ffc100', '#ff9a00', '#ff7400', '#ff4d00'] %}
+{% set LEGEND_RANGE = ['#ef553b40', '#ef553b80', '#ef553bc0', '#ef553bff'] %}
 {% set TOPLINKS = TOPLINKS or [
     {'title': 'World', 'href': '../covid-overview/'},
     {'title': 'Europe', 'href': '../covid-overview-europe/'},
@@ -134,4 +134,6 @@
         {% endfor %}
         </tbody>
     </table>
+
+    {{ extra }}
 </div>

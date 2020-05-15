@@ -23,7 +23,7 @@
 }
 
 .keen a {
-    color: #3b8beb;
+    color: #2b98f0;
     text-decoration: none;
 }
 
@@ -87,7 +87,7 @@
     padding: 4px !important;
     line-height: 1.42857143;
     background-color: #fff;
-    border: 1px solid #ddd;
+    border: 1px solid #eee;
     border-radius: 4px;
 }
 
@@ -128,7 +128,7 @@
 
 .keen .btn-primary {
     color: #fff;
-    background-color: #3b8beb;
+    background-color: #2b98f0;
 }
 
 .keen .btn-primary:hover,
@@ -142,7 +142,7 @@
 .keen .btn-default {
     color: #333;
     background-color: #fff;
-    border-color: #ccc;
+    border-color: #eee;
 }
 
 .keen .btn-default:hover,
@@ -151,7 +151,7 @@
 .keen .btn-default.active {
     color: #333;
     background-color: #e6e6e6;
-    border-color: #adadad;
+    border-color: #ddd;
 }
 
 /* CUSTOM - General */
@@ -185,7 +185,7 @@
 }
 
 .keen .text-muted {
-    color: #777;
+    color: #ccc;
 }
 
 .keen .text-center {
@@ -217,7 +217,7 @@
 
 .keen .kpi-container {
     flex-basis: 31%;
-    background: #f5f5f5;
+    background: #f7f7f7;
     border-radius: 5px;
 }
 
@@ -235,7 +235,7 @@
 .keen .kpi-box {
     justify-content: space-around;
     text-align: center;
-    background: #f5f5f5;
+    background: #f7f7f7;
     padding: 20px 0 !important;
     margin: 5px 0 !important;
     min-width: 180px;
@@ -261,20 +261,20 @@
 .keen .table .change.pos,
 .keen .kpi .grow.pos,
 .keen .color-pos {
-    color: #00c130;
+    color: #00cc96;
 }
 
 .keen .table .change.neg,
 .keen .kpi .grow,
 .keen .color-neg {
-    color: #fb1c29;
+    color: #ef553b;
 }
 
 /* CUSTOM - Table */
 
 .keen .table {
     width: 100%;
-    background: #f5f5f5;
+    background: #f7f7f7;
     font-size: 14px;
     margin-top: 20px !important;
     border-radius: 5px;
@@ -287,7 +287,7 @@
 }
 
 .keen .table tbody tr {
-    border-bottom: 1px solid #e9e9e9;
+    border-bottom: 1px solid #eee;
 }
 
 .keen .table tbody tr:last-child {
@@ -320,4 +320,11 @@
     font-size: 12px;
     vertical-align: inherit;
     font-weight: normal;
+}
+
+/* CUSTOM - Plotly */
+
+.keen .plotly-graph-div {
+    height: calc(var(--variable-width) * 0.75) !important;
+    margin-top: 32px !important;
 }
